@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+	    <Description>ASP.NET Core middleware that enables an application to support any standard Basic authentication workflow.</Description>
+	    <TargetFramework>net6.0</TargetFramework>
+	    <IsAspNetCoreApp>true</IsAspNetCoreApp>
+	    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	    <PackageTags>aspnetcore;authentication;security</PackageTags>
+	    <IsPackable>false</IsPackable>
+	    <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	
+</Project>

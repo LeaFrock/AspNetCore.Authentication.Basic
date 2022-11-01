@@ -1,4 +1,6 @@
-﻿namespace Microsoft.AspNetCore.Authentication.Basic
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace Microsoft.AspNetCore.Authentication.Basic
 {
     /// <summary>
     /// Extension methods to configure Basic authentication.
@@ -13,8 +15,9 @@
         /// </summary>
         /// <param name="builder">The <see cref="AuthenticationBuilder"/>.</param>
         /// <returns>A reference to <paramref name="builder"/> after the operation has completed.</returns>
-        public static AuthenticationBuilder AddBasic(this AuthenticationBuilder builder)
-            => builder.AddBasic(BasicAuthenticationDefaults.AuthenticationScheme, _ => { });
+        public static AuthenticationBuilder AddBasic<TAuthenticator>(this AuthenticationBuilder builder)
+            where TAuthenticator : class, IBasicUserAuthenticator
+            => builder.AddBasic<TAuthenticator>(BasicAuthenticationDefaults.AuthenticationScheme, _ => { });
 
         /// <summary>
         /// Enables Basic authentication using a pre-defined scheme.
@@ -25,8 +28,9 @@
         /// <param name="builder">The <see cref="AuthenticationBuilder"/>.</param>
         /// <param name="authenticationScheme">The authentication scheme.</param>
         /// <returns>A reference to <paramref name="builder"/> after the operation has completed.</returns>
-        public static AuthenticationBuilder AddBasic(this AuthenticationBuilder builder, string authenticationScheme)
-            => builder.AddBasic(authenticationScheme, _ => { });
+        public static AuthenticationBuilder AddBasic<TAuthenticator>(this AuthenticationBuilder builder, string authenticationScheme)
+            where TAuthenticator : class, IBasicUserAuthenticator
+            => builder.AddBasic<TAuthenticator>(authenticationScheme, _ => { });
 
         /// <summary>
         /// Enables Basic authentication using the default scheme <see cref="BasicAuthenticationDefaults.AuthenticationScheme"/>.
@@ -37,8 +41,9 @@
         /// <param name="builder">The <see cref="AuthenticationBuilder"/>.</param>
         /// <param name="configureOptions">A delegate that allows configuring <see cref="BasicAuthenticationOptions"/>.</param>
         /// <returns>A reference to <paramref name="builder"/> after the operation has completed.</returns>
-        public static AuthenticationBuilder AddBasic(this AuthenticationBuilder builder, Action<BasicAuthenticationOptions> configureOptions)
-            => builder.AddBasic(BasicAuthenticationDefaults.AuthenticationScheme, configureOptions);
+        public static AuthenticationBuilder AddBasic<TAuthenticator>(this AuthenticationBuilder builder, Action<BasicAuthenticationOptions> configureOptions)
+            where TAuthenticator : class, IBasicUserAuthenticator
+            => builder.AddBasic<TAuthenticator>(BasicAuthenticationDefaults.AuthenticationScheme, configureOptions);
 
         /// <summary>
         /// Enables Basic authentication using the specified scheme.
@@ -50,8 +55,9 @@
         /// <param name="authenticationScheme">The authentication scheme.</param>
         /// <param name="configureOptions">A delegate that allows configuring <see cref="BasicAuthenticationOptions"/>.</param>
         /// <returns>A reference to <paramref name="builder"/> after the operation has completed.</returns>
-        public static AuthenticationBuilder AddBasic(this AuthenticationBuilder builder, string authenticationScheme, Action<BasicAuthenticationOptions> configureOptions)
-            => builder.AddBasic(authenticationScheme, displayName: null, configureOptions: configureOptions);
+        public static AuthenticationBuilder AddBasic<TAuthenticator>(this AuthenticationBuilder builder, string authenticationScheme, Action<BasicAuthenticationOptions> configureOptions)
+            where TAuthenticator : class, IBasicUserAuthenticator
+            => builder.AddBasic<TAuthenticator>(authenticationScheme, displayName: null, configureOptions: configureOptions);
 
         /// <summary>
         /// Enables Basic authentication using the specified scheme.
@@ -64,8 +70,10 @@
         /// <param name="displayName">The display name for the authentication handler.</param>
         /// <param name="configureOptions">A delegate that allows configuring <see cref="BasicAuthenticationOptions"/>.</param>
         /// <returns>A reference to <paramref name="builder"/> after the operation has completed.</returns>
-        public static AuthenticationBuilder AddBasic(this AuthenticationBuilder builder, string authenticationScheme, string? displayName, Action<BasicAuthenticationOptions> configureOptions)
+        public static AuthenticationBuilder AddBasic<TAuthenticator>(this AuthenticationBuilder builder, string authenticationScheme, string? displayName, Action<BasicAuthenticationOptions> configureOptions)
+            where TAuthenticator : class, IBasicUserAuthenticator
         {
+            builder.Services.AddTransient<IBasicUserAuthenticator, TAuthenticator>();
             return builder.AddScheme<BasicAuthenticationOptions, BasicAuthenticationHandler>(authenticationScheme, displayName, configureOptions);
         }
     }

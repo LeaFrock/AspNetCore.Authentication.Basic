@@ -1,7 +1,6 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
-using System.Security.Claims;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
@@ -15,21 +14,7 @@ public abstract class SharedAuthenticationTests<TOptions> where TOptions : Authe
     protected virtual string? DisplayName { get; }
     protected abstract Type HandlerType { get; }
 
-    protected virtual bool SupportsSignIn { get => true; }
-    protected virtual bool SupportsSignOut { get => true; }
-
     protected abstract void RegisterAuth(AuthenticationBuilder services, Action<TOptions> configure);
-
-    private class RunOnce : IClaimsTransformation
-    {
-        public int Ran = 0;
-
-        public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal principal)
-        {
-            Ran++;
-            return Task.FromResult(new ClaimsPrincipal());
-        }
-    }
 
     [Fact]
     public async Task VerifySchemeDefaults()

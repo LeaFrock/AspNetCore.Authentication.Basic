@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.Authentication.Basic
             : base(context, scheme, options) { }
 
         /// <summary>
-        /// Bearer Token. This will give the application an opportunity to retrieve a token from an alternative location.
+        /// Basic Token. This will give the application an opportunity to retrieve a token from an alternative location.
         /// </summary>
         public string? Token { get; set; }
     }

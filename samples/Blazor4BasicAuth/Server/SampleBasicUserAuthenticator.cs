@@ -1,18 +1,25 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Basic;
+using Microsoft.EntityFrameworkCore;
 
-namespace AspNetCore.Authentication.Tests
+namespace Blazor4BasicAuth.Server
 {
-    internal class TestBasicUserAuthenticator : IBasicUserAuthenticator
+    internal sealed class SampleBasicUserAuthenticator : IBasicUserAuthenticator
     {
-        private static readonly Dictionary<string, User> Users = new(StringComparer.InvariantCultureIgnoreCase)
+        private readonly ApplicationDbContext _efContext;
+
+        public SampleBasicUserAuthenticator(ApplicationDbContext dbContext)
         {
-            { "Alice",  new(){ Account = "alice@example.com", Password = "123456"} },
-        };
+            _efContext = dbContext;
+        }
 
         public async Task<List<Claim>?> AuthenticateUser(string username, string password)
         {
-            if (!Users.TryGetValue(username, out var user))
+            var user = await _efContext.Users
+                .AsNoTracking()
+                .Where(u => u.Account == username)
+                .FirstOrDefaultAsync();
+            if (user is null)
             {
                 return default;
             }
@@ -20,7 +27,6 @@ namespace AspNetCore.Authentication.Tests
             {
                 return new();
             }
-            await Task.Delay(40); // Mock database request
             return new()
             {
                 new(ClaimTypes.NameIdentifier, user.Account),

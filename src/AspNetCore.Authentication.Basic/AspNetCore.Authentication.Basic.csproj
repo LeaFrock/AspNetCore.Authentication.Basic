@@ -3,17 +3,30 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-	    <Description>ASP.NET Core middleware that enables an application to support any standard Basic authentication workflow.</Description>
-	    <TargetFramework>net6.0</TargetFramework>
-	    <IsAspNetCoreApp>true</IsAspNetCoreApp>
 	    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	    <PackageTags>aspnetcore;authentication;security</PackageTags>
-	    <IsPackable>false</IsPackable>
 	    <Nullable>enable</Nullable>
+		<PackageId>LeaFLib.AspNetCore.Authentication.Basic</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<Authors>LeaFrock</Authors>
+		<Copyright>Copyright (c) LeaFrock 2022.</Copyright>
+		<Description>ASP.NET Core middleware that enables an application to support any standard Basic authentication workflow.</Description>
+		<PackageIcon>leaf.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/LeaFrock/AspNetCore.Authentication.Basic</PackageProjectUrl>
+		<PackageTags>aspnetcore;authentication;security</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>See release notes of repo.</PackageReleaseNotes>
+		<RespositoryType>git</RespositoryType>
+		<RepositoryUrl>https://github.com/LeaFrock/AspNetCore.Authentication.Basic/releases/tag/1.0.0</RepositoryUrl>
     </PropertyGroup>
 
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="README.md" Pack="true" PackagePath="\"/>
+	  <None Include="leaf.png" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	
 </Project>

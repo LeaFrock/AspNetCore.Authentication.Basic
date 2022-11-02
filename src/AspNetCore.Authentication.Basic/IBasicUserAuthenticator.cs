@@ -13,6 +13,6 @@ namespace Microsoft.AspNetCore.Authentication.Basic
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        ValueTask<List<Claim>?> AuthenticateUser(string username, string password);
+        Task<List<Claim>?> AuthenticateUser(string username, string password);
     }
 }

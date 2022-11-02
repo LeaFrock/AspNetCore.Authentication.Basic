@@ -5,7 +5,19 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authentication.Basic", "src\AspNetCore.Authentication.Basic\AspNetCore.Authentication.Basic.csproj", "{B934919F-9934-4A00-979E-329041C4FA2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Authentication.Tests", "tests\AspNetCore.Authentication.Tests\AspNetCore.Authentication.Tests.csproj", "{CEF61901-504A-422D-BB10-499F7C650307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Authentication.Tests", "tests\AspNetCore.Authentication.Tests\AspNetCore.Authentication.Tests.csproj", "{CEF61901-504A-422D-BB10-499F7C650307}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67E85242-06A1-499A-9E70-291B6D9AC7F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7E4F7678-4AF1-46A5-83E7-2547E2D191D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{83144B52-F904-478B-92B9-A921641685B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor4BasicAuth.Server", "samples\Blazor4BasicAuth\Server\Blazor4BasicAuth.Server.csproj", "{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor4BasicAuth.Client", "samples\Blazor4BasicAuth\Client\Blazor4BasicAuth.Client.csproj", "{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor4BasicAuth.Shared", "samples\Blazor4BasicAuth\Shared\Blazor4BasicAuth.Shared.csproj", "{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +33,28 @@ Global
 		{CEF61901-504A-422D-BB10-499F7C650307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEF61901-504A-422D-BB10-499F7C650307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEF61901-504A-422D-BB10-499F7C650307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B934919F-9934-4A00-979E-329041C4FA2D} = {67E85242-06A1-499A-9E70-291B6D9AC7F1}
+		{CEF61901-504A-422D-BB10-499F7C650307} = {7E4F7678-4AF1-46A5-83E7-2547E2D191D1}
+		{2FCB6E74-92D7-4C6B-8A8A-00B2AC828FA9} = {83144B52-F904-478B-92B9-A921641685B2}
+		{F9EC6DF9-EFD8-47E7-84E6-24ECE3459961} = {83144B52-F904-478B-92B9-A921641685B2}
+		{66FBE1AC-FA16-4A96-9B02-15FD3B4EE108} = {83144B52-F904-478B-92B9-A921641685B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C07F8E6-8B87-4755-AD74-484A4F5D89A2}

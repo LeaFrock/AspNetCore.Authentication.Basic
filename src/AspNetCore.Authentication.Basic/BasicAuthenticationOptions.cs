@@ -5,12 +5,13 @@
     /// </summary>
     public class BasicAuthenticationOptions : AuthenticationSchemeOptions
     {
+        private const string DefaultRealm = "ASP.NET Core";
         private const string DefaultCharSet = "UTF-8";
 
         /// <summary>
         /// Gets or sets the Realm
         /// </summary>
-        public string? Realm { get; set; }
+        public string Realm { get; set; } = DefaultRealm;
 
         /// <summary>
         /// Gets or sets the CharSet

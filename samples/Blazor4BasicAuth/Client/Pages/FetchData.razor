@@ -1,0 +1,98 @@
+﻿@page "/fetchdata"
+@using Blazor4BasicAuth.Shared
+@inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+
+<EditForm Model="@user" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Account:
+            <InputText @bind-Value="user.Account" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Password:
+            <InputTextArea @bind-Value="user.Password" />
+        </label>
+    </p>
+
+    <button type="submit">FetchDatas</button>
+</EditForm>
+
+
+@if (forecasts == null || rspInfo.Length > 0)
+{
+    <p><em>@rspInfo</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private User user = new();
+
+    private string rspInfo = string.Empty;
+
+    private WeatherForecast[]? forecasts;
+
+    protected async Task HandleValidSubmit()
+    {
+        rspInfo = string.Empty;
+        Http.DefaultRequestHeaders.Authorization = new("Basic", GenerateBasicToken(user.Account, user.Password));
+        try
+        {
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        }
+        catch (HttpRequestException ex)
+        {
+            if (ex.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                rspInfo = "Incorrect account or password!";
+            }
+        }
+    }
+
+    private static string GenerateBasicToken(string username, string password)
+    {
+        var bytes = System.Text.Encoding.UTF8.GetBytes($"{username}:{password}");
+        return Convert.ToBase64String(bytes);
+    }
+
+    internal class User
+    {
+        public string Account { get; set; } = string.Empty;
+
+        public string Password { get; set; } = string.Empty;
+    }
+}

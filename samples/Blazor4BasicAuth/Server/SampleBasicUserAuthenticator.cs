@@ -32,12 +32,5 @@ namespace Blazor4BasicAuth.Server
                 new(ClaimTypes.NameIdentifier, user.Account),
             };
         }
-
-        private sealed class User
-        {
-            public string Account { get; set; } = string.Empty;
-
-            public string Password { get; set; } = string.Empty;
-        }
     }
 }

@@ -1,6 +1,6 @@
 # LeaFLib.AspNetCore.Authentication.Basic
 
-<img width="128px" height="128px" src="src/AspNetCore.Authentication.Basic/leaf.png" align="right"/> 
+<img width="128px" height="128px" src="https://raw.githubusercontent.com/LeaFrock/LeaFLib/main/leaf.png" align="right"/> 
 
 [![LeaFLib.AspNetCore.Authentication.Basic](https://img.shields.io/nuget/v/LeaFLib.AspNetCore.Authentication.Basic.svg?color=green)](https://www.nuget.org/packages/LeaFLib.AspNetCore.Authentication.Basic/)
 [![LeaFLib.AspNetCore.Authentication.Basic](https://img.shields.io/nuget/dt/LeaFLib.AspNetCore.Authentication.Basic.svg?color=red)](https://www.nuget.org/packages/LeaFLib.AspNetCore.Authentication.Basic/)
@@ -14,7 +14,7 @@ Currently Basic Authentication is not recommended for online productions, but it
 
 ### Implement `IBasicUserAuthenticator`
 
-You must provide an implenmentation of `IBasicUserAuthenticator`. Take the following for example,
+You must provide an implementation of `IBasicUserAuthenticator`. Take the following for example,
 
 ```csharp
     internal sealed class SampleBasicUserAuthenticator : IBasicUserAuthenticator
@@ -58,7 +58,7 @@ builder.Services
     .AddBasic<SampleBasicUserAuthenticator>(opt => opt.Realm = "Blazor App");
 ```
 
-You can also take reference of the blazor sample in this repo.
+You can also refer to the samples in this repo.
 
 ## Contribution
 

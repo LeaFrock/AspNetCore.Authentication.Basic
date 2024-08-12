@@ -14,23 +14,16 @@ namespace Microsoft.AspNetCore.Authentication.Basic
     /// <remarks>
     /// See <see href="https://www.rfc-editor.org/rfc/rfc7617"/> for details.
     /// </remarks>
-    public class BasicAuthenticationHandler : AuthenticationHandler<BasicAuthenticationOptions>
+    /// <remarks>
+    /// Initializes a new instance of <see cref="BasicAuthenticationHandler"/>.
+    /// </remarks>
+    /// <inheritdoc />
+    public class BasicAuthenticationHandler(
+        IOptionsMonitor<BasicAuthenticationOptions> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder,
+        IBasicUserAuthenticator userAuthenticator) : AuthenticationHandler<BasicAuthenticationOptions>(options, logger, encoder)
     {
-        private readonly IBasicUserAuthenticator _userAuthenticator;
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="BasicAuthenticationHandler"/>.
-        /// </summary>
-        /// <inheritdoc />
-        public BasicAuthenticationHandler(
-            IOptionsMonitor<BasicAuthenticationOptions> options,
-            ILoggerFactory logger,
-            UrlEncoder encoder,
-            ISystemClock clock,
-            IBasicUserAuthenticator userAuthenticator) : base(options, logger, encoder, clock)
-        {
-            _userAuthenticator = userAuthenticator;
-        }
 
         /// <summary>
         /// The handler calls methods on the events which give the application control at certain points where processing is occurring.
@@ -126,7 +119,7 @@ namespace Microsoft.AspNetCore.Authentication.Basic
                 List<Claim>? claims;
                 try
                 {
-                    claims = await _userAuthenticator.AuthenticateUser(username, password);
+                    claims = await userAuthenticator.AuthenticateUser(username, password);
                 }
                 catch (Exception ex)
                 {

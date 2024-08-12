@@ -5,17 +5,11 @@ namespace Microsoft.AspNetCore.Authentication.Basic
     /// <summary>
     /// A <see cref="ResultContext{TOptions}"/> when authentication has failed.
     /// </summary>
-    public class AuthenticationFailedContext : ResultContext<BasicAuthenticationOptions>
+    public class AuthenticationFailedContext(
+        HttpContext context,
+        AuthenticationScheme scheme,
+        BasicAuthenticationOptions options) : ResultContext<BasicAuthenticationOptions>(context, scheme, options)
     {
-        /// <summary>
-        /// Initializes a new instance of <see cref="AuthenticationFailedContext"/>.
-        /// </summary>
-        /// <inheritdoc />
-        public AuthenticationFailedContext(
-            HttpContext context,
-            AuthenticationScheme scheme,
-            BasicAuthenticationOptions options)
-            : base(context, scheme, options) { }
 
         /// <summary>
         /// Gets or sets the exception associated with the authentication failure.

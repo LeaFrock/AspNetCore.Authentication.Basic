@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
 	    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	    <Nullable>enable</Nullable>
 		<PackageId>LeaFLib.AspNetCore.Authentication.Basic</PackageId>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>2.0.0</PackageVersion>
 		<Authors>LeaFrock</Authors>
-		<Copyright>Copyright (c) LeaFrock 2022.</Copyright>
+		<Copyright>Copyright (c) LeaFrock 2024.</Copyright>
 		<Description>ASP.NET Core middleware that enables an application to support any standard Basic authentication workflow.</Description>
 		<PackageIcon>leaf.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>

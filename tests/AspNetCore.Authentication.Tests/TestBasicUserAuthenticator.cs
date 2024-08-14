@@ -18,13 +18,13 @@ namespace AspNetCore.Authentication.Tests
             }
             if (user.Password != password)
             {
-                return new();
+                return [];
             }
             await Task.Delay(40); // Mock database request
-            return new()
-            {
+            return
+            [
                 new(ClaimTypes.NameIdentifier, user.Account),
-            };
+            ];
         }
 
         private sealed class User

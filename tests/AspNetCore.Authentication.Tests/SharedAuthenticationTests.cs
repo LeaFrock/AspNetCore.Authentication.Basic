@@ -8,8 +8,6 @@ namespace Microsoft.AspNetCore.Authentication;
 
 public abstract class SharedAuthenticationTests<TOptions> where TOptions : AuthenticationSchemeOptions
 {
-    protected TestClock Clock { get; } = new();
-
     protected abstract string DefaultScheme { get; }
     protected virtual string? DisplayName { get; }
     protected abstract Type HandlerType { get; }
